@@ -5,14 +5,12 @@ import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-kino',
-  standalone: true,
-  imports: [],
   templateUrl: './kino.component.html',
   styleUrl: './kino.component.css'
 })
 export class KinoComponent {
 
-  kino:Kino[]=[];
+  kinos:Kino[]=[];
   logged: boolean = false;
   test:Genre[]=[]
   constructor(private kinoService:KinoService){}
@@ -22,11 +20,11 @@ export class KinoComponent {
     if(token){
       this.logged=true;
     }
-      this.getKino();
+      this.getKinos();
   }
-  getKino(){
-    this.kinoService.getKino().subscribe((z)=>{
-      this.kino=z
+  getKinos(){
+    this.kinoService.getKinos().subscribe((z)=>{
+      this.kinos=z
     })
   }
   submit(id:number){

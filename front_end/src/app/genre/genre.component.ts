@@ -4,21 +4,19 @@ import { KinoService } from '../service/kino.service';
 
 @Component({
   selector: 'app-genre',
-  standalone: true,
-  imports: [],
   templateUrl: './genre.component.html',
   styleUrl: './genre.component.css'
 })
 export class GenreComponent {
-  genre:Genre[]=[];
+  genres:Genre[]=[];
   logged: boolean = false;
   constructor(private kinoService:KinoService){}
   ngOnInit(){
-      this.getGenre();
+      this.getGenres();
   }
-  getGenre(){
-    this.kinoService.getGenre().subscribe((genre)=>{
-      this.genre = genre;
+  getGenres(){
+    this.kinoService.getGenres().subscribe((genres)=>{
+      this.genres = genres;
     })
   }
 

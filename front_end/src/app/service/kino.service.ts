@@ -9,30 +9,30 @@ import { Application, Genre, Kino ,Genre1,Status} from '../models';
 })
 export class KinoService {
 
-  BASE_URL = 'http://localhost:8000'
+  BASE_URL = 'http://localhost:4200'
   jsonDataResult:any;
   userKino:Kino[]=[];
   constructor(private client: HttpClient) { }
-  getKino(): Observable<Kino[]> {
+  getKinos(): Observable<Kino[]> {
     return this.client.get<Kino[]>(
-      `${this.BASE_URL}/api/kino/`
+      `${this.BASE_URL}/api/kinos/`
     )
   }
-  getGenre(): Observable<Genre[]> {
-    return this.client.get<Genre[]>(`${this.BASE_URL}/api/Genre/`);
+  getGenres(): Observable<Genre[]> {
+    return this.client.get<Genre[]>(`${this.BASE_URL}/api/genres/`);
   }
   addKino(id:number,username:string):Observable<Status>{
-    return this.client.post<Status>(`${this.BASE_URL}/api/kino/add`,{vacancy_id:id,user_id:username})
+    return this.client.post<Status>(`${this.BASE_URL}/api/kinos/add`,{kino_id:id,user_id:username})
   }
   addKinoJSON(id:number,username:string){
     this.client.post<Application>('assets/data.json',{username,id})
   }
-  getUserKino(username:string): Observable<Kino[]> {
+  getUserKinos(username:string): Observable<Kino[]> {
     return this.client.post<Kino[]>(
-      `${this.BASE_URL}/api/userkino/`,{user_id:username,vacancy_id:"2"})
+      `${this.BASE_URL}/api/userkinos/`,{user_id:username,kino_id:"2"})
   }
-  getUserVacanciesTest(username:string) {
-    let userKino:Kino[]=[]
-    return userKino
+  getUserKinosTest(username:string) {
+    let userKinos:Kino[]=[]
+    return userKinos
   }
 }

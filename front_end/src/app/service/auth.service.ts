@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  BASE_URL = 'http://localhost:8000'
+  BASE_URL = 'http://localhost:4200'
   constructor(private client: HttpClient) {}
 
   login(username: string, password: string): Observable<AuthToken> {
