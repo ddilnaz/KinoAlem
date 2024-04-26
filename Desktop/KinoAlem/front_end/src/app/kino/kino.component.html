@@ -1,0 +1,34 @@
+<body>
+    <div class="card">
+        <div class="card-header">
+          <h2 class="name">{{kinos[0].name}}</h2>
+          
+         
+        </div>
+        <div class="card-body">
+          <p class="">{{kinos[0].genre}}</p>
+          <p class="description">{{kinos[0].description}}</p>
+        </div>
+        <ng-container *ngIf="logged">
+            <button style="background-color: #333; color:white;" (click)="submit(kinos[0].id)" type="submit" class="btn">Подать заявку</button>
+        </ng-container>
+    </div>
+    <div class="card-grid">
+    <div *ngFor="let kino of kinos.slice(1),let i =index"  class="card">
+        <div class="card-header">
+          <h2 class="name">{{kino.name}}</h2>
+          
+         
+        </div>
+        <div class="card-body">
+          <p class="">{{kino.genre}}</p>
+          <p class="description">{{kino.description}}</p>
+        </div>
+        <ng-container *ngIf="logged">
+            <button style="background-color: #333; color:white;" (click)="submit(kinos[0].id)" type="submit" class="btn">Подать заявку</button>
+        </ng-container>
+      </div>
+    </div>
+</body>
+
+<router-outlet></router-outlet>

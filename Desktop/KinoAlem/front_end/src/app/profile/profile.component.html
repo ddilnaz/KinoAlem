@@ -1,0 +1,22 @@
+<ng-container *ngIf="logged">
+    <ng-container *ngIf="kinos">
+       <h1>Ваши избранные {{kinos}}</h1>
+       <div class="card-grid">
+          <div *ngFor="let kino of kinos let i =index"  class="card">
+              <div class="card-header">
+                <!-- <h2 class="name">{{kino.direction}}</h2> -->
+                
+              </div>
+              <div class="card-body">
+                <p class="description">{{kino.description}}</p>
+              </div>
+              <div>
+               <ng-container *ngIf="logged">
+                 <button style="background-color: #333; color:white;" (click)="deleteKino(kinos[0].id)" type="submit" class="btn">Убрать из избранных</button>
+             </ng-container>
+              </div>
+            </div>
+          </div>
+    </ng-container>
+ </ng-container>
+ <router-outlet></router-outlet>
