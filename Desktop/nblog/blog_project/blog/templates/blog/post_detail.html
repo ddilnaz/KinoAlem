@@ -1,0 +1,38 @@
+{% extends './main.html' %}
+
+{% block content %}
+<h2>{{ post.title }}</h2>
+<p class="text-muted">By <a href="{% url 'users:profile' post.author.username %}">{{ post.author.username }}</a> on {{ post.created_at }}</p>
+<p>{{ post.content }}</p>
+
+{% if user == post.author %}
+    <a href="{% url 'blog:post_edit' post.pk %}" class="btn btn-primary">Edit</a>
+    <form action="{% url 'blog:post_delete' post.pk %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+{% endif %}
+
+<hr>
+<h4>Comments</h4>
+{% for comment in comments %}
+    <div class="mb-2">
+        <strong><a href="{% url 'users:profile' comment.author.username %}">{{ comment.author.username }}</a></strong> on {{ comment.created_at }}:
+        <p>{{ comment.content }}</p>
+    </div>
+{% empty %}
+    <p>No comments yet.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <hr>
+    <h5>Add a Comment</h5>
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+{% else %}
+    <p><a href="{% url 'login' %}">Login</a> to add a comment.</p>
+{% endif %}
+{% endblock %}
