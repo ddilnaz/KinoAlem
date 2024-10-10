@@ -1,6 +1,0 @@
-# front_end/.gitattributes
-
-# Устанавливаем для файлов package.json и package-lock.json
-# игнорирование изменений форматирования символов новой строки
-front_end/package.json text eol=lf
-front_end/package-lock.json text eol=lf
